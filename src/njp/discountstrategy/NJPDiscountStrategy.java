@@ -16,9 +16,11 @@ public class NJPDiscountStrategy {
      */
     public static void main(String[] args) {
         //KLUDGE: do config here
-        
+        DatabaseStrategy db = new FakeDatabase();
         
         //Start talking to objects
+        Register register = new Register();
+        register.startNewSale("100", db);
         
     }
     
