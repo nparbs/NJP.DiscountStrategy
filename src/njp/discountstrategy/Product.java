@@ -11,4 +11,57 @@ package njp.discountstrategy;
  */
 public class Product {
     
+    private String prodId;
+    private String prodName;
+    private double unitCost;
+    private DiscountStrategy discount;
+
+    public Product(String prodId, String prodName, double unitCost, DiscountStrategy discount) {
+        setProdId(prodId);
+        setProdName(prodName);
+        setUnitCost(unitCost);
+        setDiscount(discount);
+    }
+    
+    
+    
+
+    public final String getProdId() {
+        return prodId;
+    }
+
+    public final void setProdId(String prodId) {
+         //validation
+        this.prodId = prodId;
+    }
+
+    public final String getProdName() {
+        return prodName;
+    }
+
+    public final void setProdName(String prodName) {
+         //validation
+        this.prodName = prodName;
+    }
+
+    public final double getUnitCost() {
+        return unitCost;
+    }
+
+    public final void setUnitCost(double unitCost) {
+         //validation
+        this.unitCost = unitCost;
+    }
+
+    public final DiscountStrategy getDiscount() {
+        return discount;
+    }
+
+    public final void setDiscount(DiscountStrategy discount) {
+         //validation
+        this.discount = discount;
+    }
+    
+    
+    
 }
