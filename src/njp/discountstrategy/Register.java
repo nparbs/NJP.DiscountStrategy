@@ -12,6 +12,8 @@ package njp.discountstrategy;
 public class Register {
     private Receipt receipt;
     private String store;
+    private Product[] orderItems = new Product[2];
+    //private LineItem[] orderItems = new LineItem[2];
     
     public final void startNewSale(String custId, DatabaseStrategy db){
         //validation
@@ -21,10 +23,27 @@ public class Register {
     public final void startEndSale(){
         
     }
-    public final void addItemToSale(){
+    public final void addItemToSale(String prodId, int qty){
+        //HW
+        for(Product p : orderItems){
+            if(p==null) {
+                receipt.getProd(prodId);
+                //needs work
+                break;
+            }
+        }
+        
         
     }
 
+    public final Product[] getProducts() {
+        return orderItems;
+    }
+
+    public final void setProducts(Product[] products) {
+        this.orderItems = products;
+    }
+    
     public final Receipt getReceipt() {
         return receipt;
     }

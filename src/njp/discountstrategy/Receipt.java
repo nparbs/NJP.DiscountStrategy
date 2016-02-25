@@ -12,6 +12,7 @@ package njp.discountstrategy;
 public class Receipt {
     private DatabaseStrategy db;
     private Customer customer;
+    
 
     public Receipt(String custId, DatabaseStrategy db) {
         setDb(db);
@@ -19,8 +20,6 @@ public class Receipt {
     }
     
     
-    
-
     public final DatabaseStrategy getDb() {
         return db;
     }
@@ -38,6 +37,10 @@ public class Receipt {
         this.customer = customer;
     }
     
+    public final Product getProd(String prodId){
+        
+        return db.findProductById(prodId);
+    }
     
     
 }

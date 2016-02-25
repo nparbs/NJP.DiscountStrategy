@@ -21,7 +21,7 @@ public class NJPDiscountStrategy {
         //Start talking to objects
         Register register = new Register();
         register.startNewSale("100", db);
-        
+        register.addItemToSale("11", 2);
     }
     
 }
