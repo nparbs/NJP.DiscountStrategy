@@ -13,25 +13,40 @@ public class LineItem {
     
     private Product product;
     private int qty;
+    //private double lineTotal;
 
-    public LineItem(Product product, int qty) {
-        this.product = product;
-        this.qty = qty;
+    public LineItem(String prodId, int qty, DatabaseStrategy db) {
+        setQty(qty);
+        setProduct(db.findProductById(prodId));
+        
     }
 
-    public Product getProduct() {
+    public final double getLineTotal() {
+        double lineTotal = ((product.getUnitCost() * qty) - 
+                product.getDiscount().getDiscountAmt(qty,product.getUnitCost()));
+        return lineTotal;
+    }
+    
+    public final double getDiscountTotal() {
+        double discTotal =  
+                product.getDiscount().getDiscountAmt(qty,product.getUnitCost());
+        return discTotal;
+    }
+
+
+    public final Product getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public final void setProduct(Product product) {
         this.product = product;
     }
 
-    public int getQty() {
+    public final int getQty() {
         return qty;
     }
 
-    public void setQty(int qty) {
+    public final void setQty(int qty) {
         this.qty = qty;
     }
     

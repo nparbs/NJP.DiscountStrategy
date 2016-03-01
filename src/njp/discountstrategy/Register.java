@@ -11,37 +11,26 @@ package njp.discountstrategy;
  */
 public class Register {
     private Receipt receipt;
-    private String store;
-    private Product[] orderItems = new Product[2];
-    //private LineItem[] orderItems = new LineItem[2];
+    private String store = "Khols";
+    private OutputStrategy output;
+
     
     public final void startNewSale(String custId, DatabaseStrategy db){
         //validation
         receipt = new Receipt(custId, db);
+        //output = new Printer(); 
         
     }
-    public final void startEndSale(){
+    public final void startEndSale(OutputStrategy oc){
+        output = oc;
         
+        oc.outputSale(getReceipt(), store);
+        //print reciept
+        //tell printer / gui to print
     }
     public final void addItemToSale(String prodId, int qty){
         //HW
-        for(Product p : orderItems){
-            if(p==null) {
-                receipt.getProd(prodId);
-                //needs work
-                break;
-            }
-        }
-        
-        
-    }
-
-    public final Product[] getProducts() {
-        return orderItems;
-    }
-
-    public final void setProducts(Product[] products) {
-        this.orderItems = products;
+       receipt.addItemToReceipt(prodId, qty);
     }
     
     public final Receipt getReceipt() {

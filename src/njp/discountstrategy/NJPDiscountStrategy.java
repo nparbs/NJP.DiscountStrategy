@@ -20,8 +20,31 @@ public class NJPDiscountStrategy {
         
         //Start talking to objects
         Register register = new Register();
+        Printer printer = new Printer();
+        
         register.startNewSale("100", db);
         register.addItemToSale("11", 2);
+        register.addItemToSale("22", 3);
+        register.addItemToSale("33", 2);
+        register.startEndSale(printer);
+        
+        register.startNewSale("200", db);
+        register.addItemToSale("33", 2);
+        register.addItemToSale("11", 4);
+        register.startEndSale(printer);
+        
+        
     }
+    
+    
+            
+        //Customer customer = register.getReceipt().getCustomer();
+       //System.out.println("c " + customer.getCustName() + " added to receipt");
+//       LineItem[] items = register.getReceipt().getLineItems(); 
+//       for(LineItem i : items){ 
+//       System.out.println("sale " + i.getProduct().getProdName() + " qty: " + i.getQty()
+//       + " disc " + i.getDiscountTotal()+ " line total " + i.getLineTotal()
+//       );
+   // }
     
 }
