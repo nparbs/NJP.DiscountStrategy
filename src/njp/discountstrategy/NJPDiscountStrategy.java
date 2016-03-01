@@ -20,17 +20,20 @@ public class NJPDiscountStrategy {
         
         //Start talking to objects
         Register register = new Register();
-        Printer printer = new Printer();
+        OutputStrategy printer = new Printer();
+        OutputStrategy Screen = new Screen(); 
         
         register.startNewSale("100", db);
         register.addItemToSale("11", 2);
         register.addItemToSale("22", 3);
-        register.addItemToSale("33", 2);
+        register.addItemToSale("33", 2);       
+        register.startEndSale(Screen);
         register.startEndSale(printer);
         
         register.startNewSale("200", db);
         register.addItemToSale("33", 2);
-        register.addItemToSale("11", 4);
+        register.addItemToSale("11", 4);      
+        register.startEndSale(Screen);
         register.startEndSale(printer);
         
         

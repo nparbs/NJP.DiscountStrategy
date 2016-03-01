@@ -5,7 +5,9 @@
  */
 package njp.discountstrategy;
 
+import java.text.NumberFormat;
 import java.time.LocalTime;
+import java.util.Locale;
 
 /**
  *
@@ -15,21 +17,26 @@ public class Printer implements OutputStrategy{
 
     @Override
     public void outputSale(Receipt receipt, String store) {
-        double total = 0;
+        
+        NumberFormat cur = NumberFormat.getCurrencyInstance(Locale.US);
+        
         System.out.println("Store: " + store + "        Customer Name: " 
                 + receipt.getCustomer().getCustName() + "          Date Time: " 
-                + LocalTime.now());
-        System.out.println("Product Id          Product Name            Unit Price"
-                + "            Qty         Discount         Line Total");
+                + LocalTime.now()+ "\n");
+        System.out.println("Product Id       Product Name         Unit Price"
+                + "       Qty     Discount        Line Total");
          LineItem[] items = receipt.getLineItems(); 
        for(LineItem i : items){ 
-        total += i.getLineTotal();
-       System.out.println(i.getProduct().getProdId()+ "         " 
-               + i.getProduct().getProdName() + "         " 
-               + i.getProduct().getUnitCost() + "        " + i.getQty()
-       + "      " + i.getDiscountTotal()+ "         " + i.getLineTotal());
+        
+       System.out.println("       " + String.format("%-10s",i.getProduct().getProdId()) 
+               + String.format("%-25s",i.getProduct().getProdName()) 
+               + String.format("%-15s",cur.format(i.getProduct().getUnitCost())) 
+               + String.format("%-8s",i.getQty()) 
+               + String.format("%-15s",cur.format(i.getDiscountTotal()))
+               + String.format("%-15s",cur.format(i.getLineTotal())));
        }
-        System.out.println("Total:               " + total);       
+        System.out.println("\n                  Sub Total:        " 
+                + cur.format(receipt.getSubTotal()) + "\n\n");       
     
     }
     
