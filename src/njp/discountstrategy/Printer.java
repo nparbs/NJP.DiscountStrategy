@@ -30,18 +30,16 @@ public class Printer implements OutputStrategy{
         String receiptText = 
         "       Store: " + store + "        Customer Name: " 
                 + receipt.getCustomer().getCustName() + "          Date Time: " 
-                + LocalTime.now()+ "\n" +
-                
+                + LocalTime.now()+ "\n"
+                + "\nProduct Id           Product Name         Unit Price"
+                + "       Qty     Discount        Line Total\n";                 
 //                String.format("%10s","Product Id") 
 //                + String.format("%-25s","Product Name") 
 //                + String.format("%-15s","Unit Price") 
 //                + String.format("%-8s","Qty") 
 //                + String.format("%-15s","Discount")
 //                + String.format("%-15s","Line Total\n");
-                
-        "\nProduct Id           Product Name         Unit Price"
-                + "       Qty     Discount        Line Total\n"; 
-         
+
         //add line items to string        
          LineItem[] items = receipt.getLineItems();
          for(LineItem i : items){  
@@ -56,7 +54,8 @@ public class Printer implements OutputStrategy{
          //add footer to string
         receiptText = receiptText  +
         "\n                                               Sub Total:        " 
-                + cur.format(receipt.getSubTotal()) + "\n\n";
+                + cur.format(receipt.getSubTotal()) 
+                + "\n\n";
       
         return receiptText;
     }  
