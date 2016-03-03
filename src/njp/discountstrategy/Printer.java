@@ -16,29 +16,48 @@ import java.util.Locale;
 public class Printer implements OutputStrategy{
 
     @Override
-    public void outputSale(Receipt receipt, String store) {
-        
-        NumberFormat cur = NumberFormat.getCurrencyInstance(Locale.US);
-        
-        
-        //Print to console
-        System.out.println("Store: " + store + "        Customer Name: " 
-                + receipt.getCustomer().getCustName() + "          Date Time: " 
-                + LocalTime.now()+ "\n");
-        System.out.println("Product Id       Product Name         Unit Price"
-                + "       Qty     Discount        Line Total");
-         LineItem[] items = receipt.getLineItems(); 
-        for(LineItem i : items){ 
-            System.out.println("       " + String.format("%-10s",i.getProduct().getProdId()) 
-               + String.format("%-25s",i.getProduct().getProdName()) 
-               + String.format("%-15s",cur.format(i.getProduct().getUnitCost())) 
-               + String.format("%-8s",i.getQty()) 
-               + String.format("%-15s",cur.format(i.getDiscountTotal()))
-               + String.format("%-15s",cur.format(i.getLineTotal())));
-       }
-        System.out.println("\n                  Sub Total:        " 
-                + cur.format(receipt.getSubTotal()) + "\n\n");       
-    
+    public final void outputSale(Receipt receipt, String store) {
+        //print to console
+        System.out.println(getRecieptText(receipt,store));
     }
     
+    private  String getRecieptText(Receipt receipt, String store){
+        //NEEDS FORMATTING
+        
+        //String for Printer to print to console
+        NumberFormat cur = NumberFormat.getCurrencyInstance(Locale.US);
+        //String header
+        String receiptText = 
+        "       Store: " + store + "        Customer Name: " 
+                + receipt.getCustomer().getCustName() + "          Date Time: " 
+                + LocalTime.now()+ "\n" +
+                
+//                String.format("%10s","Product Id") 
+//                + String.format("%-25s","Product Name") 
+//                + String.format("%-15s","Unit Price") 
+//                + String.format("%-8s","Qty") 
+//                + String.format("%-15s","Discount")
+//                + String.format("%-15s","Line Total\n");
+                
+        "\nProduct Id           Product Name         Unit Price"
+                + "       Qty     Discount        Line Total\n"; 
+         
+        //add line items to string        
+         LineItem[] items = receipt.getLineItems();
+         for(LineItem i : items){  
+            receiptText = receiptText +( 
+                String.format("%10s",i.getProduct().getProdId()) + "           " 
+                + String.format("%-25s",i.getProduct().getProdName()) 
+                + String.format("%-15s",cur.format(i.getProduct().getUnitCost())) 
+                + String.format("%-8s",i.getQty()) 
+                + String.format("%-15s",cur.format(i.getDiscountTotal()))
+                + String.format("%-15s",cur.format(i.getLineTotal()))+ "\n");
+       }
+         //add footer to string
+        receiptText = receiptText  +
+        "\n                                               Sub Total:        " 
+                + cur.format(receipt.getSubTotal()) + "\n\n";
+      
+        return receiptText;
+    }  
 }

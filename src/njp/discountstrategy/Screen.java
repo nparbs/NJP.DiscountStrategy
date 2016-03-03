@@ -18,12 +18,12 @@ public class Screen implements OutputStrategy{
 
     @Override
     public void outputSale(Receipt receipt, String store) {
-
+            
         NumberFormat cur = NumberFormat.getCurrencyInstance(Locale.US);
         
         String itemList = ""; 
         LineItem[] items = receipt.getLineItems(); 
-        //Create concat string
+        //Create concat string of items list
         for(LineItem i : items){  
             itemList = itemList +( 
                 String.format("%10s",i.getProduct().getProdId()) + "         " 
@@ -34,6 +34,7 @@ public class Screen implements OutputStrategy{
                 + String.format("%-15s",cur.format(i.getLineTotal()))+ "\n");
        } 
         //Print to gui 
+        //NEEDS FORMATTING hard coded header / footer
         JOptionPane.showMessageDialog(null, "Store: " + store + "        Customer Name: " 
                 + receipt.getCustomer().getCustName() + "          Date Time: " 
                 + LocalTime.now()+ "\nProduct Id     Product Name      Unit Price"

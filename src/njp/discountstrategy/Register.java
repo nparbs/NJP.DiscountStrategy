@@ -12,7 +12,7 @@ package njp.discountstrategy;
 public class Register {
     private Receipt receipt;
     private String store = "Khols";
-    private OutputStrategy output;
+    //private OutputStrategy output;
 
     
     public final void startNewSale(String custId, DatabaseStrategy db){
@@ -22,7 +22,6 @@ public class Register {
         
     }
     public final void startEndSale(OutputStrategy oc){
-        output = oc;
         
         oc.outputSale(getReceipt(), store);
         //print reciept

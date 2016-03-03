@@ -37,13 +37,12 @@ public class Receipt {
         double subTotal = 0;
         for(LineItem l : lineItems){
             subTotal += l.getLineTotal();
-        };
+        }
         return subTotal;
         
     }
     
     public final Product getProd(String prodId){
-        
         return db.findProductById(prodId);
     }
     
@@ -61,6 +60,7 @@ public class Receipt {
     }
 
     public final void setCustomer(Customer customer) {
+        //validation
         this.customer = customer;
     }
 
@@ -69,6 +69,7 @@ public class Receipt {
     }
 
     public final void setLineItems(LineItem[] lineItems) {
+        //validation
         this.lineItems = lineItems;
     }
     

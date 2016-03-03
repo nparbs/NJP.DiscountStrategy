@@ -11,9 +11,10 @@ package njp.discountstrategy;
  */
 public class Validate {
     
+    //String Validation
     public final String checkString(String s){
         if (s==null){
-            throw new IllegalArgumentException("Cannot be null");
+            throw new IllegalArgumentException("Cannot be null");//msg=privite var
         } else if(s.length() >= 128) {
             throw new IllegalArgumentException("String must be less than 128 chars");
         } else {

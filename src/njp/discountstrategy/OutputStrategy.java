@@ -9,6 +9,8 @@ package njp.discountstrategy;
  *
  * @author nparbs
  */
+
+//Output
 public interface OutputStrategy {
     public abstract void outputSale(Receipt r, String store);
 }

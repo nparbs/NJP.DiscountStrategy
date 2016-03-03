@@ -13,7 +13,6 @@ public class LineItem {
     
     private Product product;
     private int qty;
-    //private double lineTotal;
 
     public LineItem(String prodId, int qty, DatabaseStrategy db) {
         setQty(qty);
@@ -39,6 +38,7 @@ public class LineItem {
     }
 
     public final void setProduct(Product product) {
+        //needs validation
         this.product = product;
     }
 
@@ -47,6 +47,7 @@ public class LineItem {
     }
 
     public final void setQty(int qty) {
+        //needs validation
         this.qty = qty;
     }
     

@@ -23,6 +23,7 @@ public class NJPDiscountStrategy {
         OutputStrategy printer = new Printer();
         OutputStrategy Screen = new Screen(); 
         
+        //sale ex1
         register.startNewSale("100", db);
         register.addItemToSale("11", 2);
         register.addItemToSale("22", 3);
@@ -30,6 +31,7 @@ public class NJPDiscountStrategy {
         register.startEndSale(Screen);
         register.startEndSale(printer);
         
+        //sale ex2
         register.startNewSale("200", db);
         register.addItemToSale("33", 2);
         register.addItemToSale("11", 4);      
