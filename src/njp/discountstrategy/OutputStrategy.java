@@ -13,4 +13,5 @@ package njp.discountstrategy;
 //Output
 public interface OutputStrategy {
     public abstract void outputSale(Receipt r, String store);
+    public abstract void strPrint(String str);
 }

@@ -15,6 +15,7 @@ import java.util.Locale;
  */
 public class Printer implements OutputStrategy{
 
+    
     @Override
     public final void outputSale(Receipt receipt, String store) {
         //print to console
@@ -59,4 +60,11 @@ public class Printer implements OutputStrategy{
       
         return receiptText;
     }  
+    
+    @Override
+    public final void strPrint(String str){
+
+        System.out.println(str);
+
+    }
 }

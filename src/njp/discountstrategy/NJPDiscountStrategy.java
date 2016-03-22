@@ -21,23 +21,27 @@ public class NJPDiscountStrategy {
         //Start talking to objects
         Register register = new Register();
         OutputStrategy printer = new Printer();
-        OutputStrategy Screen = new Screen(); 
+        OutputStrategy screen = new Screen(); 
         
         //sale ex1
+        try{
         register.startNewSale("100", db);
         register.addItemToSale("11", 2);
         register.addItemToSale("22", 3);
         register.addItemToSale("33", 2);       
-        register.startEndSale(Screen);
+        register.startEndSale(screen);
         register.startEndSale(printer);
         
         //sale ex2
-        register.startNewSale("200", db);
+        register.startNewSale("", db);//throws
+        //register.startNewSale("200", db);
         register.addItemToSale("33", 2);
         register.addItemToSale("11", 4);      
-        register.startEndSale(Screen);
+        register.startEndSale(screen);
         register.startEndSale(printer);
-        
+        } catch(IllegalArgumentException e){
+            printer.strPrint(e.getMessage());
+        }
         
     }
     

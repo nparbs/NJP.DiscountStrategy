@@ -15,20 +15,27 @@ public class Register {
     //private OutputStrategy output;
 
     
-    public final void startNewSale(String custId, DatabaseStrategy db){
+    public final void startNewSale(String custId, DatabaseStrategy db) throws IllegalArgumentException{
         //validation
+        if(custId==null||custId.isEmpty()|| db == null){
+            throw new IllegalArgumentException("invalid customer Id or Database");
+        }
         receipt = new Receipt(custId, db);
         //output = new Printer(); 
         
     }
-    public final void startEndSale(OutputStrategy oc){
-        
+    public final void startEndSale(OutputStrategy oc)  throws IllegalArgumentException{
+        if(oc==null){
+             throw new IllegalArgumentException("no output strategy");
+        }
         oc.outputSale(getReceipt(), store);
         //print reciept
         //tell printer / gui to print
     }
-    public final void addItemToSale(String prodId, int qty){
-        //HW
+    public final void addItemToSale(String prodId, int qty)  throws IllegalArgumentException{
+       if(prodId==null||prodId.isEmpty()||qty <= 0){
+           throw new IllegalArgumentException("no product or a qty of 0 or less");
+       }
        receipt.addItemToReceipt(prodId, qty);
     }
     
@@ -36,8 +43,11 @@ public class Register {
         return receipt;
     }
 
-    public final void setReceipt(Receipt receipt) {
+    public final void setReceipt(Receipt receipt)  throws IllegalArgumentException {
         //validation
+        if(receipt==null){
+            throw new IllegalArgumentException("no receipt");
+        }
         this.receipt = receipt;
     }
 
@@ -45,8 +55,11 @@ public class Register {
         return store;
     }
 
-    public final void setStore(String store) {
+    public final void setStore(String store)  throws IllegalArgumentException {
         //validation
+        if(store==null||store.isEmpty()){
+            throw new IllegalArgumentException("no store");
+        }
         this.store = store;
     }
     

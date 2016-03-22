@@ -44,4 +44,10 @@ public class Screen implements OutputStrategy{
     
     }
     
+    @Override
+    public final void strPrint(String str){
+
+        System.out.println(str);
+
+    }
 }
